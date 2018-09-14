@@ -8,6 +8,7 @@ class GdprPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IAuthFunctions, inherit=True)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IRoutes, inherit=True)    
 
     # IConfigurer
 
@@ -32,12 +33,12 @@ class GdprPlugin(plugins.SingletonPlugin):
 
 
     def before_map(self, map):
-        user_ctrl = 'ckanext.gdpr.controller:GdprUserController'        
+        user_ctrl = 'ckanext.gdpr.controller:GdprUserController'
 
         with SubMapper(map, controller=user_ctrl) as m:
-            m.connect('user_index', '/user',
-                        controller=user_ctrl, action='index')
-            m.connect('/user/reset', action='request_reset')           
+            m.connect('user_index', '/user', action='index')
+            m.connect('request_reset', '/user/reset', action='request_reset')  
+            m.connect('/user/reset/{id:.*}', action='perform_reset')                     
             m.connect('/user/activity/{id}/{offset}', action='activity')
             m.connect('user_activity_stream', '/user/activity/{id}',
                       action='activity', ckan_icon='time')
