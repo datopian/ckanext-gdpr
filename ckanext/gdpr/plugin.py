@@ -6,7 +6,6 @@ import ckanext.gdpr.action
 
 class GdprPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
-    plugins.implements(plugins.IAuthFunctions, inherit=True)
     plugins.implements(plugins.IActions)
     plugins.implements(plugins.IRoutes, inherit=True)    
 
