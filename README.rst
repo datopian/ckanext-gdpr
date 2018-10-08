@@ -8,26 +8,6 @@
 .. image:: https://coveralls.io/repos/ViderumGlobal/ckanext-gdpr/badge.svg
   :target: https://coveralls.io/r/ViderumGlobal/ckanext-gdpr
 
-.. image:: https://pypip.in/download/ckanext-gdpr/badge.svg
-    :target: https://pypi.python.org/pypi//ckanext-gdpr/
-    :alt: Downloads
-
-.. image:: https://pypip.in/version/ckanext-gdpr/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-gdpr/
-    :alt: Latest Version
-
-.. image:: https://pypip.in/py_versions/ckanext-gdpr/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-gdpr/
-    :alt: Supported Python versions
-
-.. image:: https://pypip.in/status/ckanext-gdpr/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-gdpr/
-    :alt: Development Status
-
-.. image:: https://pypip.in/license/ckanext-gdpr/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-gdpr/
-    :alt: License
-
 =============
 ckanext-gdpr
 =============
@@ -35,7 +15,18 @@ ckanext-gdpr
 .. Put a description of your extension here:
    What does it do? What features does it have?
    Consider including some screenshots or embedding a video!
+This extension contains a plugin for `GDPR <https://eugdpr.org/the-regulation/gdpr-faqs/>`_ for CKAN.
 
+The user_list and user_show CKAN API calls return user information such as: full name, email address etc. which makes the CKAN portal incompliant with GDPR. The GDPR extension blocks the access to user information for anonymous users and returns an access denied error.
+
+Restricted calls::
+
+      ckan_portal_url/api/action/user_list
+      ckan_portal_url/api/action/user_show
+      ckan_portal_url/user
+
+
+From CKAN 2.8 there is a `ckan.auth.public_user_details <https://docs.ckan.org/en/2.8/maintaining/configuration.html#ckan-auth-public-user-details>`_  configuration option, which restricts anonymous access to user information.
 
 ------------
 Requirements
